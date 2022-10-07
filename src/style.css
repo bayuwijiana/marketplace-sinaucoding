@@ -1,0 +1,127 @@
+
+.row > *{
+  padding-left: 0  !important;
+  padding-right: 0 !important;
+
+}
+.content-log{
+    padding-top: 10%;
+}
+.content-dash{
+    padding-top: 8%;
+    margin-bottom: 19%;
+}
+.mf{
+    padding-top: 15%;
+    padding-left: 5px;
+    padding-right: 5px;
+    
+
+}
+.pb{
+    padding-top: 3px;
+    padding-bottom: 9px;
+    
+    padding-left: 8px;
+    padding-right:7%;
+    border-top: lightgray solid 1px ;
+
+    
+}
+
+.log-profil{
+    width: 50%;
+    margin: 2px;
+}
+/* 191 219 254 */
+
+.content-reg{
+    padding-top: 10%;
+    margin-bottom: 13%;
+}
+
+
+.right-side{
+    position: relative;
+        animation-name: right-fade;
+        animation-duration: 3s;
+}
+.dash-prof{
+    margin-top: 7%;
+    margin-left: 2%;
+    position: fixed;
+    
+
+}
+@keyframes right-fade {
+
+    0% {
+      background-color:  rgb(232, 232, 232);
+        bottom: 50px;
+    }
+
+    45% {
+        right: 0px;
+        bottom: 0px;
+    }
+
+    
+}
+@keyframes left-fade {
+
+    0% {
+      
+        right: 70px;
+        top: 0px;
+    }
+
+    40% {
+        right: 0px;
+        top: 0px;
+    }
+  }
+  .left-side{
+    padding-top:4%;
+    position: relative;
+        animation-name: left-fade;
+        animation-duration: 3s;
+}
+.title-form {
+    height: 50px;
+    width: 100%;
+}
+.pf{
+    padding-bottom: 5px;
+    margin-left: 2%;
+}
+.log-title {
+    width: 360px;
+    height: 90px;
+    padding-left: 3%;
+}
+.title{
+    font-size: 35px;
+    font-weight: bolder;
+}
+.sub-title {
+    font-family: 'Arial', sans-serif;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.active:hover{
+    background-color: blue;
+    font-weight: bold;
+    color: white;
+}
+
+@media (max-width: 993px) { 
+    .dash-prof{
+        position: relative;
+        margin-left: 0px;
+    }
+    .left-prof{
+        padding: 10px;
+    }
+
+}
