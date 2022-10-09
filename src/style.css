@@ -4,6 +4,7 @@
   padding-right: 0 !important;
 
 }
+
 .content-log{
     padding-top: 10%;
 }
@@ -11,6 +12,7 @@
     padding-top: 8%;
     margin-bottom: 19%;
 }
+
 .mf{
     padding-top: 15%;
     padding-left: 5px;
@@ -42,14 +44,15 @@
 
 
 .right-side{
+    
     position: relative;
         animation-name: right-fade;
         animation-duration: 3s;
+
 }
 .dash-prof{
-    margin-top: 7%;
-    margin-left: 2%;
     position: fixed;
+
     
 
 }
@@ -114,14 +117,58 @@
     font-weight: bold;
     color: white;
 }
-
-@media (max-width: 993px) { 
-    .dash-prof{
-        position: relative;
-        margin-left: 0px;
-    }
+@media (max-width: 1200px) { 
     .left-prof{
-        padding: 10px;
+        padding-right: 10%;
+    }
+    .data-cont{
+        margin-left: 3%;
     }
 
 }
+@media (max-width: 992px) { 
+    .dash-prof{
+        width: 200px;
+    }
+    .content-dash{
+        justify-content: space-between;
+    }
+}
+@media (max-width: 768px) { 
+    
+    .dash-prof{
+        position: relative;
+        margin-left: 0px;
+        width: 100%;
+    }
+    .data-cont{
+     max-width: 90%;
+    }
+    
+    table{
+        font-size: 15px;
+    }
+
+     .action{
+        font-size: 12px;
+
+    }
+
+    .left-prof{
+        padding: 10px;
+    }
+    
+.lf{
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 5px;
+}
+
+}
+   .left-prof{
+        max-width: 100%;
+        min-width: 100%;
+        
+    }
+    
+

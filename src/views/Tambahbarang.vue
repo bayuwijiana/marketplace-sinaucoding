@@ -73,8 +73,7 @@
             <div class="d-flex justify-content-between pb">
                 <router-link to="/barang">
                 <button class="btn btn-dark action">Kembali</button>
-                </router-link>
-              
+                </router-link>   
               <button class="btn btn-primary action">Submit</button>
             </div>
           </form>

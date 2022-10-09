@@ -8,7 +8,7 @@
                     <b class="sub-title ">MARKETPLACE </b><b>Sinau Coding</b>
                 </div>
                 <div class=" col-lg-5 shadow-lg rounded-3 gap-5 right-side">
-                    <form  class="m-20">
+                    <form  class="m-20  px-2">
                         <p class="bg-info text-primary title-form text-center rounded-top"> Login</p>
                         <div class="px-3">
                             <label for="Username" class="form-label">Username</label>
