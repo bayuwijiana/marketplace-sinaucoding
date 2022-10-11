@@ -86,78 +86,6 @@
                                         <button class="btn btn-danger action">Hapus</button>
                                         <button class="btn btn-warning action">Update</button>
                                     </td>
-                                </tr><tr>
-                                    <td>1</td>
-                                    <td>Yanjing</td>
-                                    <td>704</td>
-                                    <td>10092</td>
-                                    <td>Comodo</td>
-                                    <td>King Wiliam Route</td>
-                                    <td>0-877-937</td>
-                                    <td class="d-lg-flex gap-2">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr><tr>
-                                    <td>1</td>
-                                    <td>Yanjing</td>
-                                    <td>704</td>
-                                    <td>10092</td>
-                                    <td>Comodo</td>
-                                    <td>King Wiliam Route</td>
-                                    <td>0-877-937</td>
-                                    <td class="d-lg-flex gap-2">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr><tr>
-                                    <td>1</td>
-                                    <td>Yanjing</td>
-                                    <td>704</td>
-                                    <td>10092</td>
-                                    <td>Comodo</td>
-                                    <td>King Wiliam Route</td>
-                                    <td>0-877-937</td>
-                                    <td class="d-lg-flex gap-2">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr><tr>
-                                    <td>1</td>
-                                    <td>Yanjing</td>
-                                    <td>704</td>
-                                    <td>10092</td>
-                                    <td>Comodo</td>
-                                    <td>King Wiliam Route</td>
-                                    <td>0-877-937</td>
-                                    <td class="d-lg-flex gap-2">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr><tr>
-                                    <td>1</td>
-                                    <td>Yanjing</td>
-                                    <td>704</td>
-                                    <td>10092</td>
-                                    <td>Comodo</td>
-                                    <td>King Wiliam Route</td>
-                                    <td>0-877-937</td>
-                                    <td class="d-lg-flex gap-2">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr><tr>
-                                    <td>1</td>
-                                    <td>Yanjing</td>
-                                    <td>704</td>
-                                    <td>10092</td>
-                                    <td>Comodo</td>
-                                    <td>King Wiliam Route</td>
-                                    <td>0-877-937</td>
-                                    <td class="d-lg-flex gap-2">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -196,9 +124,26 @@
 
 <script>
 import Navbar from '../components/Navbar.vue'
+// import axios from "axios"
+
 export default {
     components: {
         Navbar,
-    }
+    },
+    // methods:{
+    //     async getData(){
+    //         const data = await axios.get('http://159.223.57.121:8090/barang/find-all',{
+    //             header:{
+    //                 'Autorization':'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXl1ZXp6aW8yIiwiZXhwIjoxNjY1NDcwMzU2LCJpYXQiOjE2NjU0NTIzNTZ9.X0MNdy2oVcfab91Iaw1ldgIMHaRRB51XyBgkowMl3VHk6JlzyRebt_vLQlmN7ajKXiRAz6ksdPXA46L4UtJScQ',
+
+    //                 'Content-Type':'application/json'
+    //             }
+    //         }
+            
+    //         )
+    //         console.log('data:',data);
+    //     }
+    // }
+
 }
 </script>
