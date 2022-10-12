@@ -59,6 +59,13 @@
                                     </td>
                                 </tr>
                             <tbody>
+                                <!-- <tr v-for="(data,index) in dataBarang" v-bind:key="data.id">
+                                    <td>{{ index+1 }}</td>
+                                    <td>{{ data.namabarang }}</td>
+                                    <td>{{ data.harga }}</td>
+                                    <td>{{ data.stok }}</td>
+                                    <td>{{ data.supplier}}</td>
+                                </tr> -->
                                 <tr>
                                     <td>1</td>
                                     <td>Yanjing</td>
@@ -94,8 +101,6 @@
             </div>
     </section>
 </template> 
-
-
 <style>
 
 .dash-title-prof{
@@ -124,26 +129,36 @@
 
 <script>
 import Navbar from '../components/Navbar.vue'
-// import axios from "axios"
+import axios from "axios"
 
 export default {
+    created(){
+        this.getData();
+    },
     components: {
         Navbar,
     },
-    // methods:{
-    //     async getData(){
-    //         const data = await axios.get('http://159.223.57.121:8090/barang/find-all',{
-    //             header:{
-    //                 'Autorization':'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXl1ZXp6aW8yIiwiZXhwIjoxNjY1NDcwMzU2LCJpYXQiOjE2NjU0NTIzNTZ9.X0MNdy2oVcfab91Iaw1ldgIMHaRRB51XyBgkowMl3VHk6JlzyRebt_vLQlmN7ajKXiRAz6ksdPXA46L4UtJScQ',
-
-    //                 'Content-Type':'application/json'
-    //             }
-    //         }
-            
-    //         )
-    //         console.log('data:',data);
-    //     }
-    // }
-
+    methods:{
+        async getData(){
+            const  data  = await axios.get("http://159.223.57.121:8090/barang/find-all",
+            {
+                header:{
+                    'Autorization'  :"Bearer" + localStorage.getItem('Token'), 
+                    'Content-Type':'application/json'
+                },
+                params:{
+                    offset: 0 ,
+                    limit : 15
+                }
+            });
+            console.log('data:', data);
+            this.dataBarang= await data;
+        }
+    },
+    data:function(){
+        return {
+            dataBarang:[]
+        }
+    }
 }
 </script>

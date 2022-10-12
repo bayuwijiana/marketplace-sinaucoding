@@ -49,20 +49,29 @@
         methods: {
                     register: async function () {
                        await axios .post("http://159.223.57.121:8090/auth/register", {
-                                username: this.userName,
+                                username: this.username,
                                 profilName: this.profilName,
                                 password: this.password,
                             })
                             .then(async (response) => {
                                 const  data = await response.data;
-                                console.log(data);
+
+                              
+                                if(data.status==='OK'){
+                                    alert('sukses register');
+                                }
+
                                 this.$router.push('/login');
-                                this.userName = "";
+                                this.username = "";
                                 this.profilName = "";
                                 this.password = "";
                             });
+                        },
+                        action() {
+                            alert("Register Berhasil");
                         }
                  }
+                
         
     }
 </script>
