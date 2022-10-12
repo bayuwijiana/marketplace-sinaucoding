@@ -13,7 +13,7 @@
                             <p class="dash-title bg-info text-primary rounded-top">
                                 Menu
                             </p>
-                            <div class="active">
+                            <div class="active bg-primary rounded text-white">
                                 Barang
                             </div>
                             <div class="active">
@@ -59,38 +59,18 @@
                                     </td>
                                 </tr>
                             <tbody>
-                                <!-- <tr v-for="(data,index) in dataBarang" v-bind:key="data.id">
+                            <tr v-for="(data,index) in dataBarang" v-bind:key="data.id">
                                     <td>{{ index+1 }}</td>
-                                    <td>{{ data.namabarang }}</td>
+                                    <td>{{ data.namaBarang }}</td>
                                     <td>{{ data.harga }}</td>
                                     <td>{{ data.stok }}</td>
-                                    <td>{{ data.supplier}}</td>
-                                </tr> -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>Yanjing</td>
-                                    <td>704</td>
-                                    <td>10092</td>
-                                    <td>Comodo</td>
-                                    <td>King Wiliam Route</td>
-                                    <td>0-877-937</td>
+                                    <td>{{ data?.supplier?.namaSupplier}}</td>
+                                    <td>{{ data?.supplier?.alamat}}</td>
+                                    <td>{{ data?.supplier?.noTelp}}</td>
                                     <td class="d-lg-flex gap-2">
                                         <router-link to="#">
                                         <button class="btn btn-danger action">Hapus</button>
                                         </router-link>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Yanjing</td>
-                                    <td>704</td>
-                                    <td>10092</td>
-                                    <td>Comodo</td>
-                                    <td>King Wiliam Route</td>
-                                    <td>0-877-937</td>
-                                    <td class="d-lg-flex gap-2">
-                                        <button class="btn btn-danger action">Hapus</button>
                                         <button class="btn btn-warning action">Update</button>
                                     </td>
                                 </tr>
@@ -140,10 +120,10 @@ export default {
     },
     methods:{
         async getData(){
-            const  data  = await axios.get("http://159.223.57.121:8090/barang/find-all",
+            const  {data}  = await axios.get("http://159.223.57.121:8090/barang/find-all",
             {
-                header:{
-                    'Autorization'  :"Bearer" + localStorage.getItem('Token'), 
+                headers:{
+                    'Authorization'  :`Bearer ${localStorage.getItem('Token')}`, 
                     'Content-Type':'application/json'
                 },
                 params:{
@@ -151,8 +131,8 @@ export default {
                     limit : 15
                 }
             });
-            console.log('data:', data);
-            this.dataBarang= await data;
+            console.log('data:', data.data);
+            this.dataBarang= await data.data;
         }
     },
     data:function(){

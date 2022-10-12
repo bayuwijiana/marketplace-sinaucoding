@@ -13,10 +13,10 @@
                             <p class="dash-title bg-info text-primary rounded-top">
                                 Menu
                             </p>
-                            <div class="active">
+                            <div class="active ">
                                 Barang
                             </div>
-                            <div class="active">
+                            <div class="active bg-info text-white rounded">
                                 Suplier
                             </div>
                         </div>
@@ -56,91 +56,11 @@
                                 </td>
                             </tr>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Applenit</td>
-                                    <td>Castlestreet,36</td>
-                                    <td>7-48494-09</td>
-                                    <td class="d-lg-flex gap-2 justify-content-center">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Applenit</td>
-                                    <td>Castlestreet,36</td>
-                                    <td>7-48494-09</td>
-                                    <td class="d-lg-flex gap-2 justify-content-center">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Applenit</td>
-                                    <td>Castlestreet,36</td>
-                                    <td>7-48494-09</td>
-                                    <td class="d-lg-flex gap-2 justify-content-center">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Applenit</td>
-                                    <td>Castlestreet,36</td>
-                                    <td>7-48494-09</td>
-                                    <td class="d-lg-flex gap-2 justify-content-center">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Applenit</td>
-                                    <td>Castlestreet,36</td>
-                                    <td>7-48494-09</td>
-                                    <td class="d-lg-flex gap-2 justify-content-center">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Applenit</td>
-                                    <td>Castlestreet,36</td>
-                                    <td>7-48494-09</td>
-                                    <td class="d-lg-flex gap-2 justify-content-center">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Applenit</td>
-                                    <td>Castlestreet,36</td>
-                                    <td>7-48494-09</td>
-                                    <td class="d-lg-flex gap-2 justify-content-center">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Applenit</td>
-                                    <td>Castlestreet,36</td>
-                                    <td>7-48494-09</td>
-                                    <td class="d-lg-flex gap-2 justify-content-center">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Applenit</td>
-                                    <td>Castlestreet,36</td>
-                                    <td>7-48494-09</td>
+                                <tr v-for="(data,index) in dataSupplier" v-bind:key="data.index">
+                                    <td>{{ index+1 }}</td>
+                                    <td>{{ data.namaSupplier }}</td>
+                                    <td>{{ data.alamat  }}</td>
+                                    <td>{{data.noTelp}}</td>
                                     <td class="d-lg-flex gap-2 justify-content-center">
                                         <button class="btn btn-danger action">Hapus</button>
                                         <button class="btn btn-warning action">Update</button>
@@ -148,7 +68,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>                </div>
+                    </div>                
+                </div>
             </div>
     </section>
 </template> 
@@ -182,9 +103,37 @@
 
 <script>
 import Navbar from '../components/Navbar.vue'
+import axios from "axios"
+
 export default {
+    created() {
+        this.getSupplier();
+    },
     components: {
         Navbar,
+    },
+    methods: {
+        async getSupplier() {
+            const { data } = await axios.get(" http://159.223.57.121:8090/supplier/find-all",
+                {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('Token')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    params: {
+                        offset: 0,
+                        limit: 15
+                    }
+                });
+            console.log('data:', data.data);
+            this.dataSupplier = await data.data;
+        }
+    },
+    data: function () {
+        return {
+            dataSupplier: []
+        }
     }
+
 }
 </script>
