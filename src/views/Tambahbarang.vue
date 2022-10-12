@@ -64,7 +64,7 @@
               </div>
               <div class="col-8  ">
                 <select name="" id=""  v-model="supplier">
-                  <option  v-for="(data,index) in dataSupplier" v-bind:key="data.index" :value="data.supplier">{{ data.namaSupplier }}</option>
+                  <option  v-for="(data,index) in dataSupplier" v-bind:key="data.index" :value="data">{{ data.namaSupplier }}</option>
                 </select>
               </div>
             </div>
@@ -91,7 +91,7 @@ export default {
       namaBarang:'',
       harga :'',
       stok:'',
-      supplier:'',
+      supplier:[],
       dataSupplier: []
     }
   },
@@ -113,18 +113,18 @@ export default {
     },
 
     tambahBarang: async function () {
-      await axios.post("http://159.223.57.121:8090/barang/create", {
-        
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('Token')}`,
-            'Content-Type': 'application/json'
-          },
-
+      let dataBarang = {
         namaBarang: this.namaBarang,
-        harga: this.harga,
-        stok: this.stok,
-        supplier: this.supplier,
+        harga: this.alamahargat,
+        stok: this.noTstokelp,
+        supplier: this.supplier
+      }
+      await axios.post("http://159.223.57.121:8090/barang/create", dataBarang, {
 
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('Token')}`,
+          'Content-Type': 'application/json'
+        },
       })
         .then(async (response) => {
           const data = await response.data;

@@ -64,8 +64,8 @@
                                     <td>{{ data.alamat  }}</td>
                                     <td>{{data.noTelp}}</td>
                                     <td class="d-lg-flex gap-2 justify-content-center">
-                                        <button class="btn btn-danger action">Hapus</button>
-                                        <button class="btn btn-warning action">Update</button>
+                                        <button  @click='deleteTableRow(data.id)' class="btn btn-danger action">Hapus</button>
+                                        <button  @click='updateTableRow(data.id)'  class="btn btn-warning action">Update</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -129,6 +129,26 @@ export default {
                 });
             console.log('data:', data.data);
             this.dataSupplier = await data.data;
+        },
+        async deleteTableRow(id){
+            console.log('id:',id);
+            await axios.delete("http://159.223.57.121:8090/supplier/delete/" + id, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('Token')}`,
+                    'Content-Type': 'application/json'
+                },
+            }).then(async (response) => {
+                const data = await response.data;
+
+                if (data.status === 'OK') {
+                    alert('Hapus  Supplier sukses');
+                    this.getSupplier();
+                }
+            });
+        },
+        updateTableRow(id){
+            console.log('id:',id);
+            this.$router.push({name:'updatesupplier',query:{id:id}} );
         }
     },
     data: function () {
