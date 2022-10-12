@@ -63,15 +63,9 @@
                 >
               </div>
               <div class="col-8  ">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="SupplierBarang"
-                  name="supplier"
-                  v-model="supplier" 
-                  placeholder="Enter Supplier Barang"
-                  autofocus
-                />
+                <select name="" id=""  v-model="supplier">
+                  <option  v-for="(data,index) in dataSupplier" v-bind:key="data.index" value="{{ data.namaSupplier }}">{{ data.namaSupplier }}</option>
+                </select>
               </div>
             </div>
             <div class="d-flex justify-content-between pb">
@@ -89,7 +83,7 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
-import axios from "axios";
+import axios from "axios"
 
 export default {
   data: function () {
@@ -97,12 +91,41 @@ export default {
       namaBarang:'',
       harga :'',
       stok:'',
-      supplier:''
+      supplier:'',
+      dataSupplier: []
+      
+      
     }
   },
   methods: {
+    async getSupplier() {
+      const { data } = await axios.get(" http://159.223.57.121:8090/supplier/find-all",
+        {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('Token')}`,
+            'Content-Type': 'application/json'
+          },
+          params: {
+            offset: 0,
+            limit: 15
+          }
+        });
+      console.log('data:', data.data);
+      this.dataSupplier = await data.data;
+    },
+
     tambahBarang: async function () {
       await axios.post("http://159.223.57.121:8090/barang/create", {
+        
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('Token')}`,
+            'Content-Type': 'application/json'
+          },
+          params: {
+            offset: 0,
+            limit: 15
+          },
+
         namaBarang: this.namaBarang,
         harga: this.harga,
         stok: this.stok,
@@ -124,10 +147,14 @@ export default {
           this.supplier = "";
 
         });
-    }
+    },
+
   },
   components: {
     Navbar,
+  },
+  created() {
+    this.getSupplier(); 
   },
 };
 </script>
