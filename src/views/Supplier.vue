@@ -14,13 +14,15 @@
                                 Menu
                             </p>
                             <div class="active ">
-                                Barang
+                                <router-link to="/barang">
+                                    Barang
+                                </router-link>
                             </div>
-                            <div class="active bg-info text-white rounded">
+                            <div class="active bg-primary text-white rounded">
                                 Suplier
                             </div>
                         </div>
-                        <div class=" shadow-lg mb-2 rounded">
+                        <div class=" shadow-lg mb-20 rounded">
                             <p class="dash-title-online bg-info text-primary rounded-top">Online</p>
                             <div class="d-flex justify-content-evenly ">
                                 <div>hari online </div>

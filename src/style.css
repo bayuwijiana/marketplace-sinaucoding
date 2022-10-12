@@ -127,6 +127,9 @@
     font-weight: bolder;
     font-size: 15px;
 }
+.active{
+    text-decoration: none;
+}
 
 .active:hover{
     background-color: blue;

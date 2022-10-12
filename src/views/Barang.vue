@@ -17,7 +17,9 @@
                                 Barang
                             </div>
                             <div class="active">
+                                <router-link to="/supplier">
                                 Suplier
+                                </router-link>
                             </div>
                         </div>
                         <div class=" shadow-lg mb-2 rounded">

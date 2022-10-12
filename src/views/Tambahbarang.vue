@@ -64,7 +64,7 @@
               </div>
               <div class="col-8  ">
                 <select name="" id=""  v-model="supplier">
-                  <option  v-for="(data,index) in dataSupplier" v-bind:key="data.index" value="{{ data.namaSupplier }}">{{ data.namaSupplier }}</option>
+                  <option  v-for="(data,index) in dataSupplier" v-bind:key="data.index" :value="data.supplier">{{ data.namaSupplier }}</option>
                 </select>
               </div>
             </div>
@@ -93,13 +93,11 @@ export default {
       stok:'',
       supplier:'',
       dataSupplier: []
-      
-      
     }
   },
   methods: {
     async getSupplier() {
-      const { data } = await axios.get(" http://159.223.57.121:8090/supplier/find-all",
+      const { data } = await axios.get("http://159.223.57.121:8090/supplier/find-all",
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('Token')}`,
@@ -120,10 +118,6 @@ export default {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('Token')}`,
             'Content-Type': 'application/json'
-          },
-          params: {
-            offset: 0,
-            limit: 15
           },
 
         namaBarang: this.namaBarang,
