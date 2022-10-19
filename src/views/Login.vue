@@ -32,11 +32,17 @@
 import axios from "axios"
 
 export default {
+
     data: function () {
         return {
+            Token:'',
             username: '',
             password: ''
         }
+    },
+    created(){
+        this.Token =localStorage.getItem("Token");
+        console.log('Token :' ,this.Token);
     },
     methods: {
         login: async function () {

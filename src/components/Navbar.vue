@@ -1,62 +1,106 @@
 <template>
-    <nav class="navbar navbar-dark bg-info fixed-top">
-        <div class="container-fluid">
-            <div class="align-item-center">
-            <a class="navbar-brand nav-title text-primary " href="#">MARKETPLACE</a>
-            <img src="../assets/nav-log.png" class="nav-log">
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
-                aria-controls="offcanvasDarkNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end text-bg-info" tabindex="-1" id="offcanvasDarkNavbar"
-                aria-labelledby="offcanvasDarkNavbarLabel">
-                <div class="offcanvas-header">
-                    <h6 class="offcanvas-title text-white" id="offcanvasDarkNavbarLabel">MARKETPLACE</h6>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-info">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-primary" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
+  <nav class="navbar navbar-dark bg-info fixed-top">
+    <div class="container-fluid">
+      <div class="align-item-center">
+        <a class="navbar-brand nav-title text-primary" href="#">MARKETPLACE</a>
+        <img src="../assets/nav-log.png" class="nav-log" />
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasDarkNavbar"
+        aria-controls="offcanvasDarkNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="offcanvas offcanvas-end side-nav text-bg-secondary"
+        tabindex="-1"
+        id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel
+        "
+      >
+        <div class="offcanvas-header bg-info text-center ">
+          <h6
+            class="offcanvas-title text-white mx"
+            id="offcanvasDarkNavbarLabel"
+          >
+            MARKETPLACE
+          </h6>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
         </div>
-    </nav>
+        <div class="offcanvas-body mx-auto">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <button class="btn-side" @click="logout">
+                <h5>Logout</h5>
+              </button>
+            </li>
+            <li class="nav-item">
+              <router-link to="/barang">
+                <button class="btn-side">
+                  <h5>Barang</h5>
+                </button>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/supplier"
+                ><button class="btn-side">
+                  <h5>Supplier</h5>
+                </button>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
-<style>
-.nav-title{
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
-    padding-left: 20px;
 
+<script>
+export default {
+  methods: {
+    logout() {
+      console.log("Anda logout");
+      localStorage.clear();
+      this.$router.push("/");
+    },
+  },
+};
+</script>
+
+<style>
+.mx {
+  margin-left: 17px;
+  
+  font-family: Arial, Helvetica, sans-serif;
 }
-.nav-log{
-    width: 120px;
-    height: 40px;
+.side-nav {
+  opacity: 95%;
+  background: lightgray;
+}
+.btn-side {
+  background-color: white;
+  border: solid gray 1px;
+  width: 200px;
+  margin: 2px;
+  height: 40px;
+  border-radius: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.nav-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  padding-left: 50px;
+}
+.nav-log {
+  width: 120px;
+  height: 40px;
 }
 </style>

@@ -61,4 +61,12 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  console.log('from:',from);
+  console.log('To:',to);
+  
+  if (from.path=='/' &&  localStorage.getItem("Token") === null && to.path === "/barang") {
+      router.push("/");
+  } else next()
+});
 export default router;
