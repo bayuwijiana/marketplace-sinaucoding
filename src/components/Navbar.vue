@@ -38,6 +38,7 @@
         <div class="offcanvas-body mx-auto">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
+              <font-awesome-icon icon="fa-regular fa-closed-captioning" />
               <button class="btn-side" @click="logout">
                 <h5>Logout</h5>
               </button>
@@ -78,7 +79,6 @@ export default {
 <style>
 .mx {
   margin-left: 17px;
-  
   font-family: Arial, Helvetica, sans-serif;
 }
 .side-nav {
