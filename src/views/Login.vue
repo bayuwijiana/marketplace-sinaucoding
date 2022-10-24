@@ -8,9 +8,7 @@
                     <b class="sub-title ">MARKETPLACE </b><b>Sinau Coding</b>
                 </div>
                 <div class=" col-lg-5 shadow-lg rounded-3 gap-5 right-side">
-                    <button v-on:click="alertDisplay">
-                        coba alert
-                    </button>
+                  
                     <form  @submit.prevent="login" class="m-20 px-2">
                         <p class="bg-info text-primary title-form text-center rounded-top"> Login</p>
                         <div class="px-3">
@@ -49,8 +47,6 @@ export default {
     },
     methods: {
         alertDisplay() {
-        // $swal function calls SweetAlert into the application with the specified configuration.
-        // this.$swal('Heading', 'this is a Heading', 'OK');
         this.$swal.fire({
   title: 'Auto close alert!',
   html: 'I will close in <b></b> milliseconds.',
@@ -82,7 +78,7 @@ export default {
                 .then(async (response) => {
                     localStorage.setItem("Token", response.data.data.token);
                     console.log(response);
-                    
+                    this.$swal.fire("Welcome admin");
                     this.$router.push('/barang');
                     this.username = "";
                     this.password = "";

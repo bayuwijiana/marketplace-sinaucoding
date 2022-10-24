@@ -32,32 +32,29 @@
               </div>
             </div>
           </div>
+          </div>
         </div>
-      </div>
       <div class="col-md-9 shadow-lg rounded-3 data-cont">
-        <h3 class="bg-info text-primary rounded-top p-2">Dashboard</h3>
-        <div class="d-flex justify-content-between p-2">
-          <h4>Barang</h4>
+
+        <h3 class="bg-info text-primary rounded-top p-2">Dashboard</h3> 
+        <h4 class="mx-4">Barang</h4>
+        <div class="d-flex justify-content-evenly p-2">
+             <form @submit.prevent="Search" class="bd-searc w-search">
+             <div class="input-group input-group-lg px-3 ">
+              <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" v-model="searchName" autofocus required />
+              <button class="input-group-text">cari</button>
+             </div>
+             </form>
           <div class="d-flex justify-content-end p-2 gap-3">
             <router-link to="/tambahbarang">
-              <button class="btn btn-primary">Tambah Barang</button>
+              <button class="btn btn-primary add-button">
+                Tambah Barang
+              </button>
             </router-link>
           </div>
         </div>
-        <form @submit.prevent="Search" class="bd-searc">
-          <div class="input-group input-group-sm px-3">
-            <input
-              type="text"
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-sm"
-              v-model="searchName"
-              autofocus
-              required
-            />
-            <button  class="input-group-text">cari</button>
-          </div>
-        </form>
+     
         <div class="table-responsive p-2">
           <table class="table table-bordered">
             <tr>
@@ -70,11 +67,8 @@
               <td>No Telp Supplier</td>
               <td>Aksi</td>
             </tr>
-            <tbody v-if="hasilfilter?.length > 0" >
-              <tr
-                v-for="(data, index) in hasilfilter"
-                v-bind:key="index"
-              >
+            <tbody v-if="hasilfilter?.length > 0">
+              <tr v-for="(data, index) in hasilfilter" v-bind:key="index">
                 <td>{{ index + 1 }}</td>
                 <td>{{ data.namaBarang }}</td>
                 <td>{{ data.harga }}</td>
@@ -84,27 +78,18 @@
                 <td>{{ data?.supplier?.noTelp }}</td>
                 <td class="d-lg-flex gap-2">
                   <router-link to="#">
-                    <button
-                      @click="deleteTableRow(data.id)"
-                      class="btn btn-danger action"
-                    >
+                    <button @click="deleteTableRow(data.id)" class="btn btn-danger action">
                       Hapus
                     </button>
                   </router-link>
-                  <button
-                    @click="updateTableRow(data.id)"
-                    class="btn btn-warning action"
-                  >
+                  <button @click="updateTableRow(data.id)" class="btn btn-warning action">
                     Update
                   </button>
                 </td>
               </tr>
             </tbody>
             <tbody v-else>
-              <tr
-                v-for="(data, index) in dataBarang"
-                v-bind:key="index"
-              >
+              <tr v-for="(data, index) in dataBarang" v-bind:key="index">
                 <td>{{ index + 1 }}</td>
                 <td>{{ data.namaBarang }}</td>
                 <td>{{ data.harga }}</td>
@@ -114,28 +99,35 @@
                 <td>{{ data?.supplier?.noTelp }}</td>
                 <td class="d-lg-flex gap-2">
                   <router-link to="#">
-                    <button
-                      @click="deleteTableRow(data.id)"
-                      class="btn btn-danger action"
-                    >
+                    <button @click="deleteTableRow(data.id)" class="btn btn-danger action">
                       Hapus
                     </button>
                   </router-link>
-                  <button
-                    @click="updateTableRow(data.id)"
-                    class="btn btn-warning action"
-                  >
+                  <button @click="updateTableRow(data.id)" class="btn btn-warning action">
                     Update
                   </button>
                 </td>
               </tr>
             </tbody>
-            
+
           </table>
         </div>
         <div class="d-flex justify-content-end p-2 gap-3">
-          <button @click="prev()" class="btn btn-info text-white">Prev</button>
-          <button @click="next()" class="btn btn-primary">Next</button>
+          <nav aria-label="...">
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <button @click="prev()" class="btn btn-info text-white">Prev</button>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">{{offset}}</a></li>
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">{{offset+1}}</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">{{offset+2}}</a></li>
+              <li class="page-item">
+                <button @click="next()" class="btn btn-primary">Next</button>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
@@ -196,7 +188,7 @@ export default {
             "Content-Type": "application/json",
           },
           params: {
-            offset:this.offset,
+            offset: this.offset,
             // offset: 1,
             limit: 15,
           },
@@ -208,21 +200,39 @@ export default {
     },
     async deleteTableRow(id) {
       console.log("id:", id);
-      await axios
-        .delete("http://159.223.57.121:8090/barang/delete/" + id, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("Token")}`,
-            "Content-Type": "application/json",
-          },
-        })
-        .then(async (response) => {
-          const data = await response.data;
+        this.$swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+             axios
+                .delete("http://159.223.57.121:8090/barang/delete/" + id, {
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("Token")}`,
+                    "Content-Type": "application/json",
+                  },
+                })
+                .then(async (response) => {
+                  const data = await response.data;
 
-          if (data.status === "OK") {
-            alert("Hapus Barang sukses");
-            this.getData();
-          }
-        });
+                  if (data.status === "OK") {
+                    this.$swal.fire(
+                      'Deleted!',
+                      'Your file has been deleted.',
+                      'success'
+                    )
+                    this.getData();
+                  }
+                });
+              }else{
+                this.getData();
+              }
+           })
     },
     updateTableRow(id) {
       console.log("id:", id);
@@ -233,6 +243,15 @@ export default {
 </script>
 
 <style>
+.w-search{
+  width:90%;
+  margin-top:10px;
+}
+.add-button {
+  height: 50px;
+  width:150px
+
+}
 .dash-title-prof {
   font-size: 25px;
   padding: 5px;

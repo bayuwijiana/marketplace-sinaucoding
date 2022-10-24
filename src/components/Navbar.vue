@@ -68,9 +68,21 @@
 export default {
   methods: {
     logout() {
-      console.log("Anda logout");
-      localStorage.clear();
-      this.$router.push("/");
+      this.$swal.fire({
+          title: 'Are you sure?',
+          text: "you will Logout",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Log Out'
+        }).then((result) => {
+          if (result.isConfirmed) {
+              this.$swal.fire("Logout");
+              localStorage.clear();
+              this.$router.push("/");    
+              }
+        })
     },
   },
 };

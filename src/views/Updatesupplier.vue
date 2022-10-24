@@ -98,10 +98,9 @@ export default {
                     },
                 }).then(async (response) => {
                     const data = await response.data;
-
-                    if (data.status === 'OK') {
-                        alert('sukses update Supplier');
-                    }
+                    if (response.status ===200) {
+            this.$swal.fire("Sukses update supplier");
+          }
                     console.log('update ke data :',dataSupplier);
                     this.$router.push('/supplier');
                 });

@@ -58,7 +58,7 @@
 
                               
                                 if(data.status==='OK'){
-                                    alert('sukses register');
+                                    this.$swal.fire("sukses registrasi");
                                 }
 
                                 this.$router.push('/login');

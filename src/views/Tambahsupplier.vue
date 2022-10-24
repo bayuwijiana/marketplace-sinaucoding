@@ -80,7 +80,7 @@ export default {
                     const data = await response.data;
 
                     if (data.status === 'OK') {
-                        alert('sukses tambah Supplier');
+                        this.$swal.fire("Sukses tambah supplier");
                     }
                     this.$router.push('/supplier');
                     this.namaSupplier = '',

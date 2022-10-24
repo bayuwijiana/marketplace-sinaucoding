@@ -65,7 +65,7 @@
               <div class="col-8">
                 <select name=""  v-model="supplier.nama" >
                   <option
-                    v-for="(data, index) in dataSupplier"
+                    v-for="(data,index) in dataSupplier"
                     v-bind:key="data.index"
                     v-bind:value="data"
                   >
@@ -147,9 +147,8 @@ export default {
         })
         .then(async (response) => {
           const data = await response.data;
-
-          if (data.status === "OK") {
-            alert("sukses update Barang");
+          if (response.status ===200) {
+            this.$swal.fire("Sukses update barang");
           }
           console.log("update ke data :", dataBarang);
           
