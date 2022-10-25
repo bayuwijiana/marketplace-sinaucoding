@@ -190,7 +190,7 @@ export default {
           params: {
             offset: this.offset,
             // offset: 1,
-            limit: 15,
+            limit: 10,
           },
         }
       );
